@@ -7,24 +7,24 @@ const moment = MomentRange.extendMoment(Moment);
 
 // Start of Project
 
-const range = moment.range('2019-01-01', '2019-12-31');
-
-// for (let month of range.by('month')) {
-//   month.format('YYYY-MM-DD');
-// }
-
+// Year - Month - Day
+const yearRange = moment.range('2019-01-01', '2019-12-31');
+const monthRange = moment.range('2019-01-06', '2019-01-12');
 // Months Array
-const month = Array.from(range.by('month'));
-var arraym = month.map(m => m.format('MMMM'))
+    const month = Array.from(yearRange.by('month'));
+    var arraym = month.map(m => m.format('MMMM'))
 
-console.log(arraym)
+    const weekdays = Array.from(monthRange.by('days'));
+    var arrayw = weekdays.map(m => m.format('dddd'));
 
-// Days Array
-const days = Array.from(range.by('days'));
-var arrayd = days.map(m => m.format('DD'))
+    for(i=0; i<month.length;i++){
+        console.log(arraym[i]) // Months
+        console.log(_.join(arrayw));
+    }
 
-console.log(arrayd)
+    function changes(){
+        _.unshift()
+        _.join()
+    }
 
-// var newarrayd = _.chunk(arrayd, 7)
-
-// console.log(newarrayd)
+        // console.log(_.join(arrayw));

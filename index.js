@@ -4,7 +4,7 @@ var _ = require('lodash');
 const Moment = require('moment');
 const MomentRange = require('moment-range');
 const moment = MomentRange.extendMoment(Moment);
-
+const chalk = require('chalk');
 // Start of Project
 
 // Year - Month - Day
@@ -36,60 +36,51 @@ const mRange11 = moment.range('2019-11-01', '2019-11-30');
 // Month 12
 const mRange12 = moment.range('2019-12-01', '2019-12-31');
 
-// Months Array
-    const month = Array.from(yearRange.by('month'));
-    var arraym = month.map(m => m.format('MMMM'))
+    function calendar(){
 
-    const weekdays = Array.from(weekDayRange.by('days'));
-    var arrayw = weekdays.map(m => m.format('dddd'));
-
+        const month = Array.from(yearRange.by('month'));
+        var arraym = month.map(m => m.format('MMMM'))
     
-        const day1 = Array.from(mRange1.by('days'));
-        var m1 = day1.map(m => m.format('D'));
+        const weekdays = Array.from(weekDayRange.by('days'));
+        var arrayw = weekdays.map(m => m.format('ddd'));
+    
+        const months = ["day1","day2","day3","day4","day5","day6",
+        "day7","day8","day9","day10","day11","day12",]
+    
+        var mapping = ["m1","m2","m3","m4","m5","m6",
+        "m7","m8","m9","m10","m11","m12",]
+    
+        var ranges = [mRange1,mRange2,mRange3,mRange4,mRange5,mRange6,
+        mRange7,mRange8,mRange9,mRange10,mRange11,mRange12]
+    
+        for (i=0; i < 12;i++){
 
-        const day2 = Array.from(mRange2.by('days'));
-        var m2 = day2.map(m => m.format('D'));
+            months[i] = Array.from(ranges[i].by('days'));
+            mapping[i] = months[i].map(m => m.format('D'));
 
-        const day3 = Array.from(mRange3.by('days'));
-        var m3 = day3.map(m => m.format('D'));
-
-        const day4 = Array.from(mRange4.by('days'));
-        var m4 = day4.map(m => m.format('D'));
-
-        const day5 = Array.from(mRange5.by('days'));
-        var m5 = day5.map(m => m.format('D'));
-
-        const day6 = Array.from(mRange6.by('days'));
-        var m6 = day6.map(m => m.format('D'));
-
-        const day7 = Array.from(mRange7.by('days'));
-        var m7 = day7.map(m => m.format('D'));
-
-        const day8 = Array.from(mRange8.by('days'));
-        var m8 = day8.map(m => m.format('D'));
-
-        const day9 = Array.from(mRange9.by('days'));
-        var m9 = day9.map(m => m.format('D'));
-
-        const day10 = Array.from(mRange10.by('days'));
-        var m10 = day10.map(m => m.format('D'));
-
-        const day11 = Array.from(mRange11.by('days'));
-        var m11 = day11.map(m => m.format('D'));
-
-        const day12 = Array.from(mRange12.by('days'));
-        var m12 = day12.map(m => m.format('D'));
+            console.log(arraym[i]) // Months
 
 
+            console.log(_.join(arrayw));
 
-    for(i=0; i<month.length;i++){
-        console.log(arraym[i]) // Months
-        console.log(_.join(arrayw));
+            var join = _.join(mapping[i]);
+            console.log(_.chunk(mapping[i], 7))
+        }
     }
 
-    console.log(m1)
-    console.log(m2)
-    console.log(m3)
-    console.log(m4)
+    calendar();
+   
 
-        // console.log(_.join(arrayw));
+    // TESTING 
+
+    // const day1 = Array.from(mRange1.by('days'));
+    // var m1 = day1.map(m => m.format('D'));
+
+
+    // for(i=0; i<month.length;i++){
+    //     console.log(arraym[i]) // Months
+    //     console.log(_.join(arrayw));
+    //     console.log(map[i])
+    // }
+
+    // console.log(_.join(arrayw));
